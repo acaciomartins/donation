@@ -5,11 +5,21 @@ const UserController = require('./controllers/UserController');
 const DonateController = require('./controllers/DonateController');
 
 //Usuarios - doadores
+routes.post('/user/add', UserController.add);
 routes.get('/users', UserController.index);
+routes.get('/user/:id', UserController.findById);
+routes.put('/user/:id', UserController.update);
+routes.delete('/user/:id', UserController.delete);
 
 //Doacoes
+routes.post('/donate/add', DonateController.add);
 routes.get('/donations', DonateController.index);
-routes.post('/donate/incluir', DonateController.incluir);
+routes.get('/donate/:id', DonateController.findById);
+routes.put('/donate/:id', DonateController.update);
+routes.delete('/user/:id', DonateController.delete);
+
+
+module.exports = routes;
 
 // routes.get('/users', (req, res) => {
 
@@ -30,5 +40,3 @@ routes.post('/donate/incluir', DonateController.incluir);
 
 //     res.send('Oi gato!!!');
 // })
-
-module.exports = routes;
