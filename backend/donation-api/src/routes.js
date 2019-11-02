@@ -12,11 +12,12 @@ routes.put('/user/:id', UserController.update);
 routes.delete('/user/:id', UserController.delete);
 
 //Doacoes
-routes.post('/donate/add', DonateController.add);
 routes.get('/donations', DonateController.index);
 routes.get('/donate/:id', DonateController.findById);
+routes.get('/donate/findByUserId/:id', DonateController.findByUserId);
+routes.post('/donate/add', DonateController.add);
 routes.put('/donate/:id', DonateController.update);
-routes.delete('/user/:id', DonateController.delete);
+routes.delete('/donate/:id', DonateController.delete);
 
 
 module.exports = routes;

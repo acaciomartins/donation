@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Login({ navigation }) {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin() {
-        alert(user + '-' + password);
-        
+    useEffect(() => {
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
+                navigation.navigate('MyDonation');
+            }
+        })
+    }, []);
+    
+    async function handleLogin() {
+        //alert(user + '-' + password);
+        await AsyncStorage.setItem('user', user);
+        await AsyncStorage.setItem('password', password);
         navigation.navigate('Main');
     }
     return (
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 46,
-        alignSelf: "stretch",
+        alignSelf: 'stretch',
         backgroundColor: '#FFF',
         borderWidth: 1,
         borderColor: '#DDD',
